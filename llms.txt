@@ -1,0 +1,65 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+{{ site.disambiguation }} He cares about keeping the internet a safer place. Away from work he is a music nerd building a home studio and learning production and engineering.
+
+This is his personal site. It does not describe an employer, internal tools, or internal projects.
+
+## Focus
+
+{%- for area in site.data.focus %}
+- {{ area }}
+{%- endfor %}
+
+## Projects
+
+{%- assign projects = site.data.projects -%}
+{%- if projects and projects.size > 0 -%}
+{%- for project in projects -%}
+{%- if project.title %}
+- [{{ project.title }}]({{ project.code | default: project.writeup }}): {{ project.description | strip_newlines | strip }}
+{%- if project.writeup and project.code %}
+  Writeup: {{ project.writeup }}
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+{%- else %}
+No public projects are listed yet.
+{%- endif %}
+
+{%- assign certs = site.data.certifications -%}
+{%- if certs and certs.size > 0 %}
+## Certifications
+
+{%- for cert in certs -%}
+{%- if cert.name %}
+- {{ cert.name }}{% if cert.issuer %}, {{ cert.issuer }}{% endif %}{% if cert.year %} ({{ cert.year }}){% endif %}{% if cert.url %}: {{ cert.url }}{% endif %}
+{%- endif -%}
+{%- endfor -%}
+{%- endif %}
+
+## Contact
+
+{%- if site.email %}
+- Email: mailto:{{ site.email }}
+{%- endif -%}
+{%- if site.github_username %}
+- GitHub: https://github.com/{{ site.github_username }}
+{%- endif -%}
+{%- if site.linkedin_username %}
+- LinkedIn: https://www.linkedin.com/in/{{ site.linkedin_username }}
+{%- endif %}
+
+## Pages
+
+- [Home]({{ "/" | absolute_url }}): profile, focus, projects, and contact
+- [Writing]({{ "/writing/" | absolute_url }}): notes and posts
+- [Résumé]({{ "/resume.pdf" | absolute_url }}): PDF linked from the site
+- [Feed]({{ "/feed.xml" | absolute_url }}): Atom feed of posts
+- [Sitemap]({{ "/sitemap.xml" | absolute_url }}): XML sitemap

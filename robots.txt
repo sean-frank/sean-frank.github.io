@@ -1,0 +1,34 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
+# All crawlers may fetch this site, including search and AI crawlers.
+# The wildcard group already allows every agent. The named groups say so explicitly.
+# Site summary for language models: {{ "/llms.txt" | absolute_url }}
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absolute_url }}

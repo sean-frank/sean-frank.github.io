@@ -1,20 +1,35 @@
 title: Sean Frank
 # Drop the GitHub Pages default Primer theme. Layouts in this repo are the site.
 theme: null
-author: Sean Frank
 description: "Sean Frank is a security engineer focused on cloud incident response, threat investigation, and detection."
 url: "https://seanpfrank.com"
 baseurl: ""
 lang: en
+locale: en_US
+timezone: America/New_York
+
+# Short role line used in the hero and in Person.description.
+role: "Security engineer focused on cloud incident response, threat investigation, and detection"
+# Plain-language disambiguation for structured data. Do not name an employer.
+disambiguation: "Sean Frank is a security engineer at a large cloud provider, based in Northern Virginia, focused on cloud incident response, threat investigation, and detection."
+og_image_alt: "Sean Frank, security engineer focused on cloud incident response, threat investigation, and detection"
 
 email: sean@seanpfrank.com
 github_username: sean-frank
 linkedin_username: seanfrank-
 
-social:
-  links:
-    - https://github.com/sean-frank
-    - https://www.linkedin.com/in/seanfrank-
+# sameAs, rel="me", and the contact list are built from email, github_username,
+# and linkedin_username. Do not add a profile that is not already his.
+author:
+  name: Sean Frank
+  url: https://seanpfrank.com
+  uri: https://seanpfrank.com
+
+# Paste a token from Google Search Console or Bing Webmaster Tools to emit the
+# verification meta tag. Leave these unset until then.
+# webmaster_verifications:
+#   google: token-from-search-console
+#   bing: token-from-bing-webmaster
 
 markdown: kramdown
 permalink: pretty
@@ -36,27 +51,25 @@ plugins:
   - jekyll-seo-tag
   - jekyll-redirect-from
 
+# GitHub Pages enables this plugin unless it is turned off. Front matter titles
+# are the h1; post bodies start at h2. Leaving it on would replace the title
+# with the first heading.
 titles_from_headings:
-  enabled: true
-  strip_title: false
-  collections: true
+  enabled: false
 
 defaults:
   - scope:
       path: ""
     values:
-      image:
-        path: /assets/og-image.png
-        width: 1200
-        height: 630
-        alt: "Sean Frank, security engineer focused on cloud incident response, threat investigation, and detection"
+      # A path string keeps the SEO plugin's JSON-LD image as a URL.
+      # A hash makes that plugin emit @type "imageObject", which is not a schema.org type.
+      image: /assets/og-image.png
   - scope:
       path: ""
       type: posts
     values:
       layout: post
       syntax: true
-      author: Sean Frank
 
 exclude:
   - .sass-cache/

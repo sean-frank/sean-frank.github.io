@@ -5,31 +5,32 @@ permalink: /
 <header class="hero">
   <p class="eyebrow"><span class="sr-only">whoami</span><span aria-hidden="true">$ whoami</span></p>
   <h1>Sean Frank</h1>
-  <p class="role">Security engineer focused on cloud incident response, threat investigation, and detection</p>
+  <p class="role">{{ site.role }}</p>
   <div class="actions">
     <a class="button button-primary" href="{{ '/resume.pdf' | relative_url }}">Résumé<span class="sr-only"> (PDF)</span></a>
-    <a class="button button-secondary" href="https://github.com/{{ site.github_username }}">GitHub</a>
+    <a class="button button-secondary" href="https://github.com/{{ site.github_username }}" rel="me">GitHub</a>
   </div>
 </header>
 
 <section class="section" id="about" aria-labelledby="about-heading">
   <h2 id="about-heading">About</h2>
   <div class="prose">
-    <p>I'm a security engineer at a large cloud provider. I work on cloud incident response, threat investigation, and detection, and I care about keeping the internet a safer place.</p>
-    <p>I'm based in Northern Virginia. Away from work I'm a music nerd, and I like learning how the whole creation process works. Lately that means building out a home studio and continuing to learn production and engineering.</p>
+    <p>Sean Frank is a security engineer at a large cloud provider. He is focused on cloud incident response, threat investigation, and detection, and he cares about keeping the internet a safer place.</p>
+    <p>He is based in Northern Virginia. Away from work he is a music nerd, and he likes learning how the whole creation process works. Lately that means building out a home studio and continuing to learn production and engineering.</p>
   </div>
 </section>
 
+{%- assign focus = site.data.focus -%}
+{%- if focus and focus.size > 0 -%}
 <section class="section" id="focus" aria-labelledby="focus-heading">
   <h2 id="focus-heading">Focus</h2>
   <ul class="pills">
-    <li>Incident response</li>
-    <li>Threat investigation</li>
-    <li>Detection engineering</li>
-    <li>Cloud security</li>
-    <li>Triage automation</li>
+    {%- for area in focus -%}
+    <li>{{ area }}</li>
+    {%- endfor -%}
   </ul>
 </section>
+{%- endif -%}
 
 {%- assign certs = site.data.certifications -%}
 {%- if certs and certs.size > 0 -%}

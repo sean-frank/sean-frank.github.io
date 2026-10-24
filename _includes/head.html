@@ -5,6 +5,29 @@
 <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
 <title>{%- if page.title and page.title != site.title -%}{{ page.title | escape }} | {% endif -%}{{ site.title | escape }}</title>
 {% seo title=false %}
+{%- if page.sitemap == false -%}
+<meta name="robots" content="noindex, follow">
+{%- else -%}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{%- endif -%}
+<meta name="twitter:description" content="{{ page.description | default: site.description | strip | escape }}">
+{%- if site.github_username -%}
+<link rel="me" href="https://github.com/{{ site.github_username }}">
+{%- endif -%}
+{%- if site.linkedin_username -%}
+<link rel="me" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+{%- endif -%}
+{%- if site.email -%}
+<link rel="me" href="mailto:{{ site.email }}">
+{%- endif -%}
+<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ '/sitemap.xml' | absolute_url }}">
+{%- unless page.image.width -%}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ site.og_image_alt | escape }}">
+<meta name="twitter:image:alt" content="{{ site.og_image_alt | escape }}">
+{%- endunless -%}
+{% include json-ld.html %}
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="icon" href="{{ '/assets/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
 <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}" sizes="any">
