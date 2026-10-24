@@ -1,7 +1,7 @@
 title: Sean Frank
 # Drop the GitHub Pages default Primer theme. Layouts in this repo are the site.
 theme: null
-description: "Sean Frank is a security engineer focused on cloud incident response, threat investigation, and detection."
+description: "Sean Frank is a security professional at a large cloud provider, moving into cloud incident response, threat investigation, and detection."
 url: "https://seanpfrank.com"
 baseurl: ""
 lang: en
@@ -9,10 +9,10 @@ locale: en_US
 timezone: America/New_York
 
 # Short role line used in the hero and in Person.description.
-role: "Security engineer focused on cloud incident response, threat investigation, and detection"
+role: "Security professional moving into cloud incident response, threat investigation, and detection"
 # Plain-language disambiguation for structured data. Do not name an employer.
-disambiguation: "Sean Frank is a security engineer at a large cloud provider, based in Northern Virginia, focused on cloud incident response, threat investigation, and detection."
-og_image_alt: "Sean Frank, security engineer focused on cloud incident response, threat investigation, and detection"
+disambiguation: "Sean Frank is a security professional at a large cloud provider, based in Northern Virginia, moving into cloud incident response, threat investigation, and detection."
+og_image_alt: "Sean Frank, a security professional moving into cloud incident response, threat investigation, and detection"
 
 email: sean@seanpfrank.com
 github_username: sean-frank
