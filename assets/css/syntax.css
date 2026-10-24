@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/jetbrains-mono-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --code-keyword: #0f766e;
+  --code-string: #1d4ed8;
+  --code-comment: #4b5563;
+  --code-number: #9a3412;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-keyword: #2dd4bf;
+    --code-string: #93c5fd;
+    --code-comment: #9ca3af;
+    --code-number: #5eead4;
+  }
+}
+
+.highlighter-rouge {
+  margin: 0 0 1.25rem;
+}
+
+.highlight {
+  margin: 0;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  background: transparent;
+  border: 0;
+}
+
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .ow {
+  color: var(--code-keyword);
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx {
+  color: var(--code-string);
+}
+
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cs,
+.highlight .cp,
+.highlight .ch {
+  color: var(--code-comment);
+}
+
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il {
+  color: var(--code-number);
+}
+
+.highlight .nt {
+  color: var(--code-keyword);
+}
+
+.highlight .na {
+  color: var(--code-number);
+}

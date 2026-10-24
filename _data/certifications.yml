@@ -1,0 +1,9 @@
+# Certifications already earned. The home section stays hidden until this
+# list has at least one entry with a name. Replace [] and do not invent any.
+#
+# - name: Example Certification
+#   issuer: Example Issuer
+#   year: 2024
+#   url: https://example.com/credential
+
+[]

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include header.html %}
+  <main id="main" tabindex="-1">
+    <div class="wrap">
+      {{ content }}
+    </div>
+  </main>
+  {% include footer.html %}
+  <script>
+    (function () {
+      var button = document.getElementById("nav-toggle");
+      var nav = document.getElementById("site-nav");
+      if (!button || !nav) return;
+      var desktop = window.matchMedia("(min-width: 860px)");
+      function setOpen(open) {
+        button.setAttribute("aria-expanded", open ? "true" : "false");
+        nav.classList.toggle("is-open", open);
+      }
+      button.addEventListener("click", function () {
+        setOpen(button.getAttribute("aria-expanded") !== "true");
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+          setOpen(false);
+          button.focus();
+        }
+      });
+      nav.addEventListener("click", function (event) {
+        if (event.target.closest("a")) setOpen(false);
+      });
+      desktop.addEventListener("change", function (event) {
+        if (event.matches) setOpen(false);
+      });
+    })();
+  </script>
+</body>
+</html>

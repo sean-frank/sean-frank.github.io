@@ -1,42 +1,70 @@
-title: "Sean Frank - Blog"
-author: "Sean Frank"
-description: "Welcome to my blog. More to come. " # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+title: Sean Frank
+# Drop the GitHub Pages default Primer theme. Layouts in this repo are the site.
+theme: null
+author: Sean Frank
+description: "Sean Frank is a security engineer focused on cloud incident response, threat investigation, and detection."
+url: "https://seanpfrank.com"
+baseurl: ""
+lang: en
 
-# Email / Social media user names used by the minima theme:
-# All of these are optional and can be removed or commented out
-email: "sean@seanpfrank.com"
-#twitter_username: username
-github_username: "sean-frank"
-linkedin_username: "seanfrank-"
-#facebook_username: username
-#flickr_username: username
-#instagram_username: username
-#pinterest_username: username
-#youtube_username: username
-#googleplus_username: +username
+email: sean@seanpfrank.com
+github_username: sean-frank
+linkedin_username: seanfrank-
 
-#########################################################################################
-######### Nothing below needs to be changed (unless you know what you're doing) #########
-#########################################################################################
-theme: "minima"
+social:
+  links:
+    - https://github.com/sean-frank
+    - https://www.linkedin.com/in/seanfrank-
 
-rss: rss
+markdown: kramdown
+permalink: pretty
 
 kramdown:
+  input: GFM
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    disable: true
-    
+    default_lang: plaintext
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
 
 titles_from_headings:
-  strip_title: true
+  enabled: true
+  strip_title: false
   collections: true
 
 defaults:
   - scope:
       path: ""
-      type: post
     values:
-      tags: Other
+      image:
+        path: /assets/og-image.png
+        width: 1200
+        height: 630
+        alt: "Sean Frank, security engineer focused on cloud incident response, threat investigation, and detection"
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      syntax: true
+      author: Sean Frank
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - .jekyll-metadata
+  - .bundle/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
