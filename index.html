@@ -1,0 +1,114 @@
+---
+layout: default
+permalink: /
+---
+<header class="hero">
+  <p class="eyebrow"><span class="sr-only">whoami</span><span aria-hidden="true">$ whoami</span></p>
+  <h1>Sean Frank</h1>
+  <p class="role">{{ site.role }}</p>
+  <div class="actions">
+    <a class="button button-primary" href="{{ '/resume.pdf' | relative_url }}">Résumé<span class="sr-only"> (PDF)</span></a>
+    <a class="button button-secondary" href="https://github.com/{{ site.github_username }}" rel="me">GitHub</a>
+  </div>
+</header>
+
+<section class="section" id="about" aria-labelledby="about-heading">
+  <h2 id="about-heading">About</h2>
+  <div class="prose">
+    <p>Sean Frank is a security engineer at a large cloud provider. He is focused on cloud incident response, threat investigation, and detection, and he cares about keeping the internet a safer place.</p>
+    <p>He is based in Northern Virginia. Away from work he is a music nerd, and he likes learning how the whole creation process works. Lately that means building out a home studio and continuing to learn production and engineering.</p>
+  </div>
+</section>
+
+{%- assign focus = site.data.focus -%}
+{%- if focus and focus.size > 0 -%}
+<section class="section" id="focus" aria-labelledby="focus-heading">
+  <h2 id="focus-heading">Focus</h2>
+  <ul class="pills">
+    {%- for area in focus -%}
+    <li>{{ area }}</li>
+    {%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}
+
+{%- assign certs = site.data.certifications -%}
+{%- if certs and certs.size > 0 -%}
+<section class="section" id="certifications" aria-labelledby="certifications-heading">
+  <h2 id="certifications-heading">Certifications</h2>
+  <ul class="cards">
+    {%- for cert in certs -%}
+      {%- if cert.name -%}
+      <li>
+        <article class="card">
+          <h3>
+            {%- if cert.url -%}
+            <a href="{{ cert.url }}">{{ cert.name }}</a>
+            {%- else -%}
+            {{ cert.name }}
+            {%- endif -%}
+          </h3>
+          {%- if cert.issuer or cert.year -%}
+          <p class="meta">
+            {%- if cert.issuer -%}{{ cert.issuer }}{%- endif -%}
+            {%- if cert.issuer and cert.year -%} · {%- endif -%}
+            {%- if cert.year -%}{{ cert.year }}{%- endif -%}
+          </p>
+          {%- endif -%}
+        </article>
+      </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</section>
+{%- endif -%}
+
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <h2 id="projects-heading">Projects</h2>
+  {%- assign projects = site.data.projects -%}
+  {%- if projects and projects.size > 0 -%}
+  <ul class="cards">
+    {%- for project in projects -%}
+      {%- if project.title -%}
+      <li>
+        <article class="card">
+          <h3>{{ project.title }}</h3>
+          {%- if project.description -%}
+          <p>{{ project.description }}</p>
+          {%- endif -%}
+          {%- if project.tech and project.tech.size > 0 -%}
+          <ul class="pills" aria-label="Technologies for {{ project.title }}">
+            {%- for tech in project.tech -%}
+            <li>{{ tech }}</li>
+            {%- endfor -%}
+          </ul>
+          {%- endif -%}
+          {%- if project.code or project.writeup -%}
+          <div class="card-links">
+            {%- if project.code -%}
+            <a href="{{ project.code }}">Code<span class="sr-only"> for {{ project.title }}</span></a>
+            {%- endif -%}
+            {%- if project.writeup -%}
+            <a href="{{ project.writeup }}">Writeup<span class="sr-only"> for {{ project.title }}</span></a>
+            {%- endif -%}
+          </div>
+          {%- endif -%}
+        </article>
+      </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+  {%- else -%}
+  <p class="empty">No public projects listed yet.</p>
+  {%- endif -%}
+</section>
+
+<section class="section" id="writing" aria-labelledby="writing-heading">
+  <h2 id="writing-heading">Writing</h2>
+  {% include writing-list.html limit=5 empty="Nothing published yet." %}
+</section>
+
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Contact</h2>
+  {% include contact-list.html class="contact-list" %}
+</section>

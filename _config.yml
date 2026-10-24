@@ -1,42 +1,83 @@
-title: "Sean Frank - Blog"
-author: "Sean Frank"
-description: "Welcome to my blog. More to come. " # This will show up in places like twitter, linkedin, etc, if you share your sites url as a post.
+title: Sean Frank
+# Drop the GitHub Pages default Primer theme. Layouts in this repo are the site.
+theme: null
+description: "Sean Frank is a security engineer focused on cloud incident response, threat investigation, and detection."
+url: "https://seanpfrank.com"
+baseurl: ""
+lang: en
+locale: en_US
+timezone: America/New_York
 
-# Email / Social media user names used by the minima theme:
-# All of these are optional and can be removed or commented out
-email: "sean@seanpfrank.com"
-#twitter_username: username
-github_username: "sean-frank"
-linkedin_username: "seanfrank-"
-#facebook_username: username
-#flickr_username: username
-#instagram_username: username
-#pinterest_username: username
-#youtube_username: username
-#googleplus_username: +username
+# Short role line used in the hero and in Person.description.
+role: "Security engineer focused on cloud incident response, threat investigation, and detection"
+# Plain-language disambiguation for structured data. Do not name an employer.
+disambiguation: "Sean Frank is a security engineer at a large cloud provider, based in Northern Virginia, focused on cloud incident response, threat investigation, and detection."
+og_image_alt: "Sean Frank, security engineer focused on cloud incident response, threat investigation, and detection"
 
-#########################################################################################
-######### Nothing below needs to be changed (unless you know what you're doing) #########
-#########################################################################################
-theme: "minima"
+email: sean@seanpfrank.com
+github_username: sean-frank
+linkedin_username: seanfrank-
 
-rss: rss
+# sameAs, rel="me", and the contact list are built from email, github_username,
+# and linkedin_username. Do not add a profile that is not already his.
+author:
+  name: Sean Frank
+  url: https://seanpfrank.com
+  uri: https://seanpfrank.com
+
+# Paste a token from Google Search Console or Bing Webmaster Tools to emit the
+# verification meta tag. Leave these unset until then.
+# webmaster_verifications:
+#   google: token-from-search-console
+#   bing: token-from-bing-webmaster
+
+markdown: kramdown
+permalink: pretty
 
 kramdown:
+  input: GFM
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    disable: true
-    
+    default_lang: plaintext
+    css_class: highlight
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-redirect-from
 
+# GitHub Pages enables this plugin unless it is turned off. Front matter titles
+# are the h1; post bodies start at h2. Leaving it on would replace the title
+# with the first heading.
 titles_from_headings:
-  strip_title: true
-  collections: true
+  enabled: false
 
 defaults:
   - scope:
       path: ""
-      type: post
     values:
-      tags: Other
+      # A path string keeps the SEO plugin's JSON-LD image as a URL.
+      # A hash makes that plugin emit @type "imageObject", which is not a schema.org type.
+      image: /assets/og-image.png
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      syntax: true
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - .jekyll-metadata
+  - .bundle/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules

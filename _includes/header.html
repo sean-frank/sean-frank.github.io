@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="wrap header-bar">
+    <a class="wordmark" href="{{ '/' | relative_url }}"{% if page.url == "/" %} aria-current="page"{% endif %}>Sean Frank</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">
+        <span class="when-closed">Open menu</span>
+        <span class="when-open">Close menu</span>
+      </span>
+      <svg class="icon-menu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <nav id="site-nav" class="nav-panel" aria-label="Primary">
+    <ul class="nav-list wrap">
+      <li><a href="{{ '/#about' | relative_url }}">About</a></li>
+      <li><a href="{{ '/#projects' | relative_url }}">Projects</a></li>
+      <li><a href="{{ '/writing/' | relative_url }}"{% if page.url == "/writing/" %} aria-current="page"{% endif %}>Writing</a></li>
+      <li><a href="{{ '/resume.pdf' | relative_url }}">Résumé<span class="sr-only"> (PDF)</span></a></li>
+    </ul>
+  </nav>
+</header>

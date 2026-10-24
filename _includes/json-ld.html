@@ -1,0 +1,184 @@
+{%- if page.sitemap != false -%}
+{%- assign person_id = site.url | append: "/#person" -%}
+{%- assign website_id = site.url | append: "/#website" -%}
+{%- assign image_id = site.url | append: "/#primaryimage" -%}
+{%- assign page_url = page.url | absolute_url -%}
+{%- assign page_id = page_url | append: "#webpage" -%}
+{%- assign og_url = "/assets/og-image.png" | absolute_url -%}
+{%- assign image_alt = page.image.alt | default: site.og_image_alt | default: site.description -%}
+{%- assign image_width = page.image.width | default: 1200 -%}
+{%- assign image_height = page.image.height | default: 630 -%}
+{%- assign home_url = "/" | absolute_url -%}
+{%- assign writing_url = "/writing/" | absolute_url -%}
+{%- if page.url == "/" -%}
+  {%- assign page_type = "ProfilePage" -%}
+{%- elsif page.layout == "post" -%}
+  {%- assign page_type = "BlogPosting" -%}
+{%- elsif page.url == "/writing/" -%}
+  {%- assign page_type = "CollectionPage" -%}
+{%- else -%}
+  {%- assign page_type = "WebPage" -%}
+{%- endif -%}
+{%- assign page_name = page.title | default: site.title -%}
+{%- assign page_description = page.description | default: site.description | strip_html | normalize_whitespace | strip -%}
+{%- if page.layout == "post" -%}
+  {%- assign excerpt = page.excerpt | strip_html | normalize_whitespace | strip -%}
+  {%- if page.description -%}
+    {%- assign page_description = page.description | strip_html | normalize_whitespace | strip -%}
+  {%- elsif excerpt != "" -%}
+    {%- assign page_description = excerpt -%}
+  {%- endif -%}
+{%- endif -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": {{ person_id | jsonify }},
+      "name": {{ site.author.name | jsonify }},
+      "url": {{ site.url | jsonify }},
+      "jobTitle": "Security Engineer",
+      "description": {{ site.role | jsonify }},
+      "disambiguatingDescription": {{ site.disambiguation | jsonify }},
+      "knowsAbout": {{ site.data.focus | jsonify }},
+      "email": {{ site.email | jsonify }},
+      "image": { "@id": {{ image_id | jsonify }} },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "Northern Virginia"
+      },
+      "sameAs": [
+        {%- if site.github_username -%}
+        {{ site.github_username | prepend: "https://github.com/" | jsonify }}
+        {%- endif -%}
+        {%- if site.github_username and site.linkedin_username -%},{%- endif -%}
+        {%- if site.linkedin_username -%}
+        {{ site.linkedin_username | prepend: "https://www.linkedin.com/in/" | jsonify }}
+        {%- endif -%}
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": {{ image_id | jsonify }},
+      "url": {{ og_url | jsonify }},
+      "width": {{ image_width | jsonify }},
+      "height": {{ image_height | jsonify }},
+      "caption": {{ image_alt | jsonify }}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ website_id | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": "en",
+      "publisher": { "@id": {{ person_id | jsonify }} },
+      "image": { "@id": {{ image_id | jsonify }} }
+    },
+    {%- if page_type == "BlogPosting" -%}
+    {
+      "@type": "WebPage",
+      "@id": {{ page_url | jsonify }},
+      "url": {{ page_url | jsonify }},
+      "name": {{ page_name | jsonify }},
+      "description": {{ page_description | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "about": { "@id": {{ person_id | jsonify }} },
+      "inLanguage": "en",
+      "primaryImageOfPage": { "@id": {{ image_id | jsonify }} },
+      "breadcrumb": { "@id": {{ page_url | append: "#breadcrumb" | jsonify }} },
+      "mainEntity": { "@id": {{ page_url | append: "#article" | jsonify }} }
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": {{ page_url | append: "#article" | jsonify }},
+      "headline": {{ page_name | jsonify }},
+      "description": {{ page_description | jsonify }},
+      "url": {{ page_url | jsonify }},
+      "mainEntityOfPage": { "@id": {{ page_url | jsonify }} },
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+      "author": { "@id": {{ person_id | jsonify }} },
+      "publisher": { "@id": {{ person_id | jsonify }} },
+      "image": { "@id": {{ image_id | jsonify }} },
+      "inLanguage": "en",
+      "articleSection": "Writing",
+      "isPartOf": { "@id": {{ website_id | jsonify }} }
+    }
+    {%- else -%}
+    {
+      "@type": {{ page_type | jsonify }},
+      "@id": {{ page_id | jsonify }},
+      "url": {{ page_url | jsonify }},
+      "name": {{ page_name | jsonify }},
+      "description": {{ page_description | jsonify }},
+      "isPartOf": { "@id": {{ website_id | jsonify }} },
+      "about": { "@id": {{ person_id | jsonify }} },
+      "inLanguage": "en",
+      "primaryImageOfPage": { "@id": {{ image_id | jsonify }} }
+      {%- if page_type == "ProfilePage" -%}
+      ,"mainEntity": { "@id": {{ person_id | jsonify }} }
+      {%- assign project_links = site.data.projects | map: "code" | compact -%}
+      {%- if project_links.size > 0 -%}
+      ,"significantLink": {{ project_links | jsonify }}
+      {%- endif -%}
+      {%- else -%}
+      ,"breadcrumb": { "@id": {{ page_url | append: "#breadcrumb" | jsonify }} }
+      {%- endif -%}
+    }
+    {%- endif -%}
+    {%- assign projects = site.data.projects -%}
+    {%- if projects and projects.size > 0 -%}
+    {%- for project in projects -%}
+    {%- if project.title -%}
+    ,{
+      "@type": "SoftwareSourceCode",
+      "@id": {{ page_url | append: "#project-" | append: forloop.index | jsonify }},
+      "name": {{ project.title | jsonify }},
+      "description": {{ project.description | strip | jsonify }},
+      "author": { "@id": {{ person_id | jsonify }} },
+      "creator": { "@id": {{ person_id | jsonify }} }
+      {%- if project.code -%}
+      ,"url": {{ project.code | jsonify }},
+      "codeRepository": {{ project.code | jsonify }}
+      {%- endif -%}
+      {%- if project.tech and project.tech.size > 0 -%}
+      ,"programmingLanguage": {{ project.tech | jsonify }}
+      {%- endif -%}
+    }
+    {%- endif -%}
+    {%- endfor -%}
+    {%- endif -%}
+    {%- if page_type != "ProfilePage" -%}
+    ,{
+      "@type": "BreadcrumbList",
+      "@id": {{ page_url | append: "#breadcrumb" | jsonify }},
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ home_url | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": {{ writing_url | jsonify }}
+        }
+        {%- if page_type == "BlogPosting" -%}
+        ,{
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ page_name | jsonify }},
+          "item": {{ page_url | jsonify }}
+        }
+        {%- endif -%}
+      ]
+    }
+    {%- endif -%}
+  ]
+}
+</script>
+{%- endif -%}

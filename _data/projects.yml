@@ -1,0 +1,22 @@
+# Public projects shown on the home page.
+# Optional keys: description, tech (list), code (URL), writeup (URL or site path).
+# Leave the file as an empty list ([]) to show the empty state.
+
+- title: openapi-lookup
+  description: >-
+    A Python command-line interface for the open API listings from
+    public-apis, with tools and scripts aimed at making that lookup
+    easier and faster for security analysts.
+  tech:
+    - Python
+  code: https://github.com/sean-frank/openapi-lookup
+
+- title: arsenal
+  description: >-
+    A set of scripts and tools for investigating abuse on the cloud,
+    including URL and redirect checks, host and WHOIS lookups, and
+    reputation helpers.
+  tech:
+    - Shell
+    - Python
+  code: https://github.com/sean-frank/arsenal
