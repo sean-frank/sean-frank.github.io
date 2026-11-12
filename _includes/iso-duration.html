@@ -1,0 +1,21 @@
+{%- assign raw = include.duration | default: "" | strip -%}
+{%- assign body = raw | remove_first: "PT" -%}
+{%- assign hours = "" -%}
+{%- assign minutes = "" -%}
+{%- if body contains "H" -%}
+  {%- assign hours = body | split: "H" | first -%}
+  {%- assign after_hours = body | split: "H" | last -%}
+{%- else -%}
+  {%- assign after_hours = body -%}
+{%- endif -%}
+{%- if after_hours contains "M" -%}
+  {%- assign minutes = after_hours | split: "M" | first -%}
+{%- endif -%}
+{%- if hours != "" and hours != "0" -%}
+{%- if hours == "1" %}1 hour{% else %}{{ hours }} hours{% endif -%}
+{%- if minutes != "" and minutes != "0" %} {{ minutes }} min{% endif -%}
+{%- elsif minutes != "" -%}
+{{ minutes }} min
+{%- else -%}
+{{ raw }}
+{%- endif -%}
