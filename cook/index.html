@@ -1,0 +1,27 @@
+---
+layout: default
+title: Recipes
+description: "Dinner recipes Sean cooks at home."
+permalink: /cook/
+sitemap: false
+robots: noindex, nofollow
+---
+<div class="page recipe-index">
+  <h1>Recipes</h1>
+  <p class="role">Newest first. <a href="{{ '/cook/today/' | relative_url }}">Tonight</a> opens the recipe marked today.</p>
+  {%- assign recipes = site.cook | sort: "date" | reverse -%}
+  {%- if recipes.size == 0 -%}
+  <p class="empty">No recipes yet.</p>
+  {%- else -%}
+  <ul class="post-list">
+    {%- for recipe in recipes -%}
+    <li>
+      <a href="{{ recipe.url | relative_url }}">
+        <span>{{ recipe.name | escape }}{%- if recipe.today %} <span class="recipe-tonight">Tonight</span>{%- endif -%}</span>
+        <time datetime="{{ recipe.date | date_to_xmlschema }}">{{ recipe.date | date: "%B %-d, %Y" }}</time>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+</div>

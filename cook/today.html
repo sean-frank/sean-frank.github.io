@@ -1,0 +1,56 @@
+---
+layout: null
+permalink: /cook/today/
+sitemap: false
+robots: noindex, nofollow
+---
+{%- assign recipes = site.cook | sort: "date" | reverse -%}
+{%- assign dest = "" -%}
+{%- assign tonight_name = "" -%}
+{%- for recipe in recipes -%}
+  {%- if recipe.today -%}
+    {%- assign dest = recipe.url | relative_url -%}
+    {%- assign tonight_name = recipe.name -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if dest == "" -%}
+  {%- assign fallback = recipes | first -%}
+  {%- if fallback -%}
+    {%- assign dest = fallback.url | relative_url -%}
+    {%- assign tonight_name = fallback.name -%}
+  {%- endif -%}
+{%- endif -%}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  {%- if dest -%}
+  <meta http-equiv="refresh" content="0; url={{ dest | escape }}">
+  {%- endif -%}
+  <title>Tonight's recipe | {{ site.title | escape }}</title>
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- if dest -%}
+  <script>location.replace({{ dest | jsonify }});</script>
+  {%- endif -%}
+</head>
+<body>
+  <main id="main">
+    <div class="wrap">
+      <div class="page">
+        {%- if dest != "" -%}
+        <h1>Tonight's recipe</h1>
+        <p class="role"><a href="{{ dest }}">{{ tonight_name | escape }}</a></p>
+        {%- else -%}
+        <h1>No recipe tonight</h1>
+        <p class="role">Add a file in _cook and set today to true.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </main>
+</body>
+</html>

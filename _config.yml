@@ -34,6 +34,10 @@ author:
 markdown: kramdown
 permalink: pretty
 
+# Jekyll hides any document dated after the build clock. These dinner dates
+# are the day they are cooked, including days that have not happened yet.
+future: true
+
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -57,6 +61,11 @@ plugins:
 titles_from_headings:
   enabled: false
 
+collections:
+  cook:
+    output: true
+    permalink: /cook/:name/
+
 defaults:
   - scope:
       path: ""
@@ -70,6 +79,18 @@ defaults:
     values:
       layout: post
       syntax: true
+  - scope:
+      path: ""
+      type: cook
+    values:
+      layout: recipe
+      sitemap: false
+      robots: "noindex, nofollow"
+  - scope:
+      path: "cook"
+    values:
+      sitemap: false
+      robots: "noindex, nofollow"
 
 exclude:
   - .sass-cache/

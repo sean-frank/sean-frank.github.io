@@ -3,9 +3,27 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
-<title>{%- if page.title and page.title != site.title -%}{{ page.title | escape }} | {% endif -%}{{ site.title | escape }}</title>
+{%- assign html_title = page.title -%}
+{%- if page.layout == "recipe" -%}
+  {%- assign html_title = page.name -%}
+{%- endif -%}
+<title>{%- if html_title and html_title != site.title -%}{{ html_title | escape }} | {% endif -%}{{ site.title | escape }}</title>
+{%- if page.layout == "recipe" -%}
+<meta name="description" content="{{ page.description | strip | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:locale" content="{{ site.locale | default: 'en_US' | replace: '-', '_' }}">
+<meta property="og:title" content="{{ page.name | escape }}">
+<meta property="og:description" content="{{ page.description | strip | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:type" content="article">
+<meta property="og:image" content="{{ page.image | absolute_url }}">
+{%- else -%}
 {% seo title=false %}
-{%- if page.sitemap == false -%}
+{%- endif -%}
+{%- if page.robots -%}
+<meta name="robots" content="{{ page.robots | escape }}">
+{%- elsif page.sitemap == false -%}
 <meta name="robots" content="noindex, follow">
 {%- else -%}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">

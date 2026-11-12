@@ -1,0 +1,86 @@
+---
+layout: default
+---
+{%- capture prep_label %}{% include iso-duration.html duration=page.prep_time %}{% endcapture -%}
+{%- capture cook_label %}{% include iso-duration.html duration=page.cook_time %}{% endcapture -%}
+{%- capture total_label %}{% include iso-duration.html duration=page.total_time %}{% endcapture -%}
+{%- assign prep_label = prep_label | strip -%}
+{%- assign cook_label = cook_label | strip -%}
+{%- assign total_label = total_label | strip -%}
+<article class="recipe">
+  <header>
+    <h1>{{ page.name | escape }}</h1>
+    {%- if page.description -%}
+    <p class="recipe-summary">{{ page.description | escape }}</p>
+    {%- endif -%}
+    <p class="recipe-meta">
+      <span>{{ page.yield | escape }}</span>
+      <span aria-hidden="true"> · </span>
+      <span>Prep <time datetime="{{ page.prep_time | escape }}">{{ prep_label | escape }}</time></span>
+      <span aria-hidden="true"> · </span>
+      <span>Cook <time datetime="{{ page.cook_time | escape }}">{{ cook_label | escape }}</time></span>
+      <span aria-hidden="true"> · </span>
+      <span>Total <time datetime="{{ page.total_time | escape }}">{{ total_label | escape }}</time></span>
+    </p>
+    {%- if page.tools and page.tools.size > 0 -%}
+    <p class="recipe-tools">Tools: {{ page.tools | join: ", " | escape }}</p>
+    {%- endif -%}
+  </header>
+
+  <section aria-labelledby="ingredients-heading">
+    <h2 id="ingredients-heading">Ingredients</h2>
+    <ul class="recipe-ingredients">
+      {%- for item in page.ingredients -%}
+      <li>
+        <label>
+          <input type="checkbox">
+          <span>{{ item | escape }}</span>
+        </label>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+
+  <section aria-labelledby="steps-heading">
+    <h2 id="steps-heading">Steps</h2>
+    <ol class="recipe-steps">
+      {%- for step in page.steps -%}
+      <li>
+        <h3>{{ step.name | escape }}</h3>
+        <p>{{ step.text | escape }}</p>
+      </li>
+      {%- endfor -%}
+    </ol>
+  </section>
+
+  <p class="recipe-more"><a href="{{ '/cook/' | relative_url }}">All recipes</a></p>
+</article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": {{ page.name | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "datePublished": {{ page.date | date: "%Y-%m-%d" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }}
+  },
+  "recipeYield": {{ page.yield | jsonify }},
+  "prepTime": {{ page.prep_time | jsonify }},
+  "cookTime": {{ page.cook_time | jsonify }},
+  "totalTime": {{ page.total_time | jsonify }},
+  "recipeCategory": {{ page.category | jsonify }},
+  "tool": {{ page.tools | jsonify }},
+  "recipeIngredient": {{ page.ingredients | jsonify }},
+  "recipeInstructions": [
+    {%- for step in page.steps -%}
+    {
+      "@type": "HowToStep",
+      "name": {{ step.name | jsonify }},
+      "text": {{ step.text | jsonify }}
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
