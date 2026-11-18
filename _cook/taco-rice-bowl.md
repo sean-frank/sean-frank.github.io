@@ -3,7 +3,7 @@ layout: recipe
 name: Taco rice bowl
 description: "One serving of taco-seasoned ground beef with onion and yellow bell pepper over Instant Pot rice, with broccoli cooked right in the beef skillet so it soaks up the taco seasoning, and salsa on top. The rice batch is larger; save the extra for Wednesday. Butter only, never seed oils."
 date: 2026-11-16
-today: true
+today: false
 yield: "1 serving"
 prep_time: PT10M
 cook_time: PT25M
@@ -43,7 +43,7 @@ steps:
     text: >-
       While the rice cooks, melt 1 teaspoon salted butter in a large skillet
       over medium-high heat. Brown 6 oz 93/7 ground beef with the diced onion
-      and yellow bell pepper for 6 to 8 minutes, until the beef reaches 160°F.
+      and yellow bell pepper for 6 to 8 minutes, until the beef reaches 160 F.
       Start an 8-minute Beef timer.
   - name: Steam the broccoli in the skillet
     text: >-
