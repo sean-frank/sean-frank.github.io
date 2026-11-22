@@ -3,7 +3,7 @@ layout: recipe
 name: Chicken thighs with broccoli in the drippings and leftover rice
 description: "One serving of skillet chicken thighs with broccoli sauteed in the drippings over leftover Instant Pot rice, with salsa. Butter only, never seed oils."
 date: 2026-11-18
-today: true
+today: false
 yield: "1 serving"
 prep_time: PT5M
 cook_time: PT25M
