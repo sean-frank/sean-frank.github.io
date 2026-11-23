@@ -3,7 +3,7 @@ layout: recipe
 name: Taco rice bowl
 description: "One serving of taco-seasoned ground beef with onion and yellow bell pepper over Instant Pot rice, with broccoli cooked right in the beef skillet so it soaks up the taco seasoning, and salsa on top. The rice batch is larger; save the extra for Wednesday. Butter only, never seed oils."
 date: 2026-11-16
-today: false
+today: true
 yield: "1 serving"
 prep_time: PT10M
 cook_time: PT25M
