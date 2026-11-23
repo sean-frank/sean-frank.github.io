@@ -3,7 +3,7 @@ layout: recipe
 name: Skillet NY strip with toaster-oven potato and roasted broccoli
 description: "One serving of skillet NY strip with a toaster-oven potato and roasted broccoli. Start the potato in the microwave, then crisp it in the dual-door toaster oven. Butter only, never seed oils."
 date: 2026-11-15
-today: true
+today: false
 yield: "1 serving"
 prep_time: PT10M
 cook_time: PT25M
