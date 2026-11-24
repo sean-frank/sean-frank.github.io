@@ -1,8 +1,8 @@
 ---
 layout: recipe
 name: Taco rice bowl
-description: "One serving of taco-seasoned ground beef with onion and yellow bell pepper over Instant Pot rice, with broccoli cooked right in the beef skillet so it soaks up the taco seasoning, and salsa on top. The rice batch is larger; save the extra for Wednesday. Butter only, never seed oils."
-date: 2026-11-16
+description: "One serving of taco-seasoned ground beef with onion and yellow bell pepper over Instant Pot rice, with broccoli cooked right in the beef skillet so it soaks up the taco seasoning, and salsa on top. The rice batch is larger; freeze the extra in 1/2-cup portions. Butter only, never seed oils."
+date: 2026-11-24
 today: true
 yield: "1 serving"
 prep_time: PT10M
@@ -32,7 +32,7 @@ steps:
     text: >-
       Rinse 1 cup rice and put it in the Instant Pot with 1 cup water. This
       batch makes about 3 cups cooked rice. Use about 1/2 cup tonight and
-      save the rest for Wednesday.
+      freeze the rest in 1/2-cup portions.
   - name: Cook the rice
     text: >-
       Seal the Instant Pot and cook on High pressure for 4 minutes. Start a
@@ -60,6 +60,6 @@ steps:
   - name: Assemble the bowl
     text: >-
       Scoop about 1/2 cup cooked rice into a bowl. Top with the beef and
-      broccoli, then spoon salsa on top. Refrigerate the leftover rice for
-      Wednesday.
+      broccoli, then spoon salsa on top. Freeze the leftover rice in 1/2-cup
+      portions.
 ---
